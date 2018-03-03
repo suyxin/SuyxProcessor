@@ -33,7 +33,7 @@ public class ViewInjectProcessor extends BaseProcessor {
     Map<String, TypeElement> classTypeElement = new HashMap<>();
 
     @Override
-    public void collectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+    public void processCollectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
 
         classMap.clear();
         classTypeElement.clear();
@@ -63,26 +63,17 @@ public class ViewInjectProcessor extends BaseProcessor {
 
     private static final String SUFFIX = "$$Injector";
 
-    String model = "package com.suyxin.test;\n" +
-            "\n" +
-            "public class MainActivity1$$Injector {\n" +
-            "\n" +
-            "\tpublic MainActivity1$$Injector(com.suyxin.test.MainActivity1 activity) {\n" +
-            "\tactivity.name1 = (android.widget.TextView)activity.findViewById(2131165253);\n" +
-            "\tactivity.value1 = (android.widget.TextView)activity.findViewById(2131165311);\n" +
-            "\t}\n" +
-            "}";
 
     @Override
-    public void writeToFile() {
+    public void processWriteToFile() {
 
         for (Map.Entry<String, TypeElement> entry :
                 classTypeElement.entrySet()) {
             TypeElement typeElement = entry.getValue();
-
+            //遍历每一个类
             String simpleName = typeElement.getSimpleName().toString();
             String fullName = typeElement.asType().toString();
-            //遍历每一个类
+
             String PACKAGE = fullName.replace("." + simpleName, "");
             String newSimpleClassName = entry.getValue().getSimpleName() + SUFFIX;
 

@@ -24,7 +24,7 @@ public class HelloProcessor extends BaseProcessor {
     private List<Element> annotationElements = new ArrayList<>();
 
     @Override
-    public void collectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+    public void processCollectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
         for (Element annotatedElement : roundEnvironment.getElementsAnnotatedWith(Hello.class)) {
 
             if (annotatedElement.getKind() != ElementKind.CLASS) {
@@ -39,7 +39,7 @@ public class HelloProcessor extends BaseProcessor {
     }
 
     @Override
-    public void writeToFile() {
+    public void processWriteToFile() {
         for (Element classElement : annotationElements) {
             genarateClassFile(classElement);
         }

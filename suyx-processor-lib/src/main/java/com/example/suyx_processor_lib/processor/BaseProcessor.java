@@ -46,8 +46,8 @@ public abstract class BaseProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        collectInfo(set, roundEnvironment);
-        writeToFile();
+        processCollectInfo(set, roundEnvironment);
+        processWriteToFile();
         return false;
     }
 
@@ -59,22 +59,19 @@ public abstract class BaseProcessor extends AbstractProcessor {
     @Override
     public Set<String> getSupportedAnnotationTypes() {
 
-
         return supportedAnnotationTypes();
     }
 
-   public abstract void collectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment);
-    public abstract void  writeToFile();
+   public abstract void processCollectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment);
+    public abstract void processWriteToFile();
 
     public abstract  Set<String> supportedAnnotationTypes();
-
 
     protected void info(String s) {
         mMessager.printMessage(
                 Diagnostic.Kind.NOTE,//日志等级
                 s);
     }
-
     protected void error(Element e, String msg, Object... args) {
         mMessager.printMessage(
                 Diagnostic.Kind.ERROR,//日志等级
