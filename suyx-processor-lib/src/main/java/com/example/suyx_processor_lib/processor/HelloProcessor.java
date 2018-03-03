@@ -1,6 +1,7 @@
 package com.example.suyx_processor_lib.processor;
 
 import com.example.suyx_annotation_lib.annotation.Hello;
+import com.google.auto.service.AutoService;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -9,6 +10,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
@@ -18,7 +20,7 @@ import javax.tools.JavaFileObject;
 /**
  * Created by suyxin on 2018/3/3.
  */
-//@AutoService(Processor.class)
+@AutoService(Processor.class)
 public class HelloProcessor extends BaseProcessor {
 
     private List<Element> annotationElements = new ArrayList<>();

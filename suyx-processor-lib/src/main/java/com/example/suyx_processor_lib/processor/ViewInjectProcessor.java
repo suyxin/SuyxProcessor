@@ -98,10 +98,10 @@ public class ViewInjectProcessor extends BaseProcessor {
                     .append(newSimpleClassName)
                     .append(" {\n\n");
 
-            String constorStr = "\tpublic %s(%s activity) {\n";
+            String constorStr = "\tpublic %s(%s activity) {\n\n";
             builder.append(String.format(constorStr, newSimpleClassName, fullName));// open method
 
-            String findViewByIdStr = "\tactivity.%s = (%s)activity.findViewById(%s);\n";
+            String findViewByIdStr = "\t\tactivity.%s = (%s)activity.findViewById(%s);\n";
             for (VariableInfo info : classMap.get(entry.getKey())) {
 
                 builder.append(String.format(findViewByIdStr, info.variableElement.getSimpleName(), info.variableElement.asType().toString(), info.viewId));
