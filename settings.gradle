@@ -1,0 +1,1 @@
+include ':app',  ':suyx-processor-lib', ':suyx-annotation-lib', ':suyx-api-lib'

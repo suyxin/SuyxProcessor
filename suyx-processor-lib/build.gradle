@@ -1,0 +1,13 @@
+apply plugin: 'java-library'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //Google开发用来生成META-INF/services/javax.annotation.processing.Processor文件
+    implementation 'com.google.auto.service:auto-service:1.0-rc2'
+    //JAVA文件输出辅助类
+    implementation 'com.squareup:javapoet:1.7.0'
+    implementation project(':suyx-annotation-lib')
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
