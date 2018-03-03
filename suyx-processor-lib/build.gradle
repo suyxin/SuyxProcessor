@@ -11,3 +11,7 @@ dependencies {
 
 sourceCompatibility = "1.7"
 targetCompatibility = "1.7"
+// 解决build警告：编码GBK的不可映射字符
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
