@@ -1,8 +1,8 @@
-package com.example.suyx_api_lib;
+package com.example.suyx_api_lib.inject;
 
 import android.app.Activity;
 
-import com.example.suyx_api_lib.compile.InjectorCompile;
+import com.example.suyx_api_lib.inject.compile.InjectorCompile;
 
 /**
  * Created by suyxin on 2018/3/3.

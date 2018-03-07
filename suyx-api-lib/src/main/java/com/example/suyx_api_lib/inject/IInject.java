@@ -1,4 +1,4 @@
-package com.example.suyx_api_lib;
+package com.example.suyx_api_lib.inject;
 
 import android.app.Activity;
 

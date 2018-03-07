@@ -1,8 +1,8 @@
-package com.example.suyx_api_lib.compile;
+package com.example.suyx_api_lib.inject.compile;
 
 import android.app.Activity;
 
-import com.example.suyx_api_lib.IInject;
+import com.example.suyx_api_lib.inject.IInject;
 
 import java.lang.reflect.Constructor;
 
