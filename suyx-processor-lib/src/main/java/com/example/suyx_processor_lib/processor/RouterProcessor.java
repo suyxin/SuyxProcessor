@@ -26,6 +26,7 @@ public class RouterProcessor extends BaseProcessor {
 
     @Override
     public void processCollectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+
         Set<? extends Element> elements=  roundEnvironment.getElementsAnnotatedWith(Path.class);
         for (Element element : elements) {
             String path = element.getAnnotation(Path.class).value();
@@ -41,6 +42,7 @@ public class RouterProcessor extends BaseProcessor {
     private static final String CLASS_SIMPLE_NAME = "Router$$Group";
     @Override
     public void processWriteToFile() {
+
         String classFullName = PACKAGE + CLASS_SIMPLE_NAME;
 
         StringBuilder builder = new StringBuilder()

@@ -46,8 +46,13 @@ public abstract class BaseProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+
+
         processCollectInfo(set, roundEnvironment);
-        processWriteToFile();
+        //process执行完毕才执行代码生成
+        if (roundEnvironment.processingOver()) {
+            processWriteToFile();
+        }
         return false;
     }
 
@@ -56,6 +61,10 @@ public abstract class BaseProcessor extends AbstractProcessor {
         return SourceVersion.latestSupported();
     }
 
+    /**
+     * 支持的注解，只有注解
+     * @return
+     */
     @Override
     public Set<String> getSupportedAnnotationTypes() {
 
