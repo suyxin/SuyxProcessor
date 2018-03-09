@@ -37,8 +37,7 @@ public class ViewInjectProcessor extends BaseProcessor {
     @Override
     public void processCollectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
 
-        classMap.clear();
-        classTypeElement.clear();
+
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(ViewInject.class);
         for (Element e : elements) {
             int viewId = e.getAnnotation(ViewInject.class).value();

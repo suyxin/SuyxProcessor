@@ -8,7 +8,7 @@ import com.example.suyx_annotation_lib.annotation.Hello;
 import com.example.suyx_annotation_lib.annotation.Path;
 import com.example.suyx_annotation_lib.annotation.ViewInject;
 import com.example.suyx_api_lib.inject.InjectManager;
-import com.example.suyx_api_lib.router.Router;
+import com.suyxin.test.reflex.TestFacade;
 
 @Path("/main/home")
 @Hello(name = "hello",text = "suyxin")
@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         name.setText("我成功注入了name");
         value.setText("去成功注入了value");
 
-        Router.getInstance().toActivity(this, "/main/test1");
+//        Router.getInstance().toActivity(this, "/main/test1");
+
+        TestFacade.startTest();
     }
 }

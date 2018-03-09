@@ -71,6 +71,11 @@ public abstract class BaseProcessor extends AbstractProcessor {
         return supportedAnnotationTypes();
     }
 
+    /**
+     * 这个方法的最后的process才执行
+     * @param set
+     * @param roundEnvironment
+     */
    public abstract void processCollectInfo(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment);
     public abstract void processWriteToFile();
 
