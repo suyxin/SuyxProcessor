@@ -1,7 +1,7 @@
 package com.example.suyx_processor_lib.processor;
 
 import com.example.suyx_annotation_lib.annotation.Hello;
-import com.example.suyx_annotation_lib.annotation.ViewInject;
+import com.example.suyx_annotation_lib.annotation.viewinject.ViewInject;
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;

@@ -16,6 +16,7 @@ import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
 
 /**
+ * 一个非常重要的地方：注解处理是在编译Java源代码之前，此时是无法通过class反射获取类信息,
  * Created by suyxin on 2018/3/3.
  */
 

@@ -1,4 +1,4 @@
-package com.example.suyx_annotation_lib.annotation;
+package com.example.suyx_annotation_lib.annotation.router;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

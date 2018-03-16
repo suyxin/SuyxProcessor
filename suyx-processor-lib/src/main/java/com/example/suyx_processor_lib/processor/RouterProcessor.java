@@ -1,6 +1,6 @@
 package com.example.suyx_processor_lib.processor;
 
-import com.example.suyx_annotation_lib.annotation.Path;
+import com.example.suyx_annotation_lib.annotation.router.Path;
 import com.google.auto.service.AutoService;
 
 import java.io.IOException;

@@ -2,7 +2,7 @@ package com.example.suyx_api_lib.inject.runtime;
 
 import android.app.Activity;
 
-import com.example.suyx_annotation_lib.annotation.ViewInject;
+import com.example.suyx_annotation_lib.annotation.viewinject.ViewInject;
 import com.example.suyx_api_lib.inject.IInject;
 
 import java.lang.reflect.Field;
