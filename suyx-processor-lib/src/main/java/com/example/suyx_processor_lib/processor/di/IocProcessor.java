@@ -93,6 +93,7 @@ public class IocProcessor extends BaseProcessor  {
                     //所属类
                     String tempModuleName = executableElement.getEnclosingElement().asType().toString();
                     if (tempModuleName.equals(moduleName)) {
+                        info("找到一个提供方法 key =" + executableElement.getReturnType().toString() + "value = " + executableElement.asType().toString());
                         providerMap.put(executableElement.getReturnType().toString(), executableElement);
                     }
                 }
@@ -102,6 +103,7 @@ public class IocProcessor extends BaseProcessor  {
             JavaFileBuilder fileBuilder = new JavaFileBuilder();
             String pckName = componnetElement.asType().toString().
                     replace("." + componnetElement.getSimpleName(), "");
+            info("包名是 " + pckName);
             fileBuilder.append("package %s;\n",pckName);
             fileBuilder.append("public class %s%s implements %s{\n", Consts.COMPONNET_IMPL_PREFIX,
                     componnetElement.getSimpleName(), componnetElement.getSimpleName());
@@ -123,42 +125,44 @@ public class IocProcessor extends BaseProcessor  {
                     String returnTypeName = executableElement.getReturnType().toString();
                     VariableElement param = params.get(0);
 
+                    info("参数:" + param.asType().toString());
 
                     fileBuilder.append("\t\t@Override\n");
-                    fileBuilder.append("public void %s(%s %s){\n", executableElement.getSimpleName(),
+                    fileBuilder.append("\t\tpublic void %s(%s %s){\n", executableElement.getSimpleName(),
                             param.asType().toString(), param.getSimpleName());
+//
+                    String hostName = param.asType().toString();
 
+                    for (VariableElement injectElement : mInjectElements) {
+                        //查找在这个对象里面的注入变量
+                        String tempHostName = injectElement.getEnclosingElement().asType().toString();
+                        if (tempHostName.equals(hostName)) {
 
+                            List<VariableElement> listInject = injectFieldMap.get(hostName);
+                            if (listInject == null) {
+                                listInject = new ArrayList<>();
 
-//
-//                    String hostName = param.asType().toString();
-//
-//                    for (VariableElement injectElement : mInjectElements) {
-//                        //查找在这个对象里面的注入变量
-//                        String tempHostName = injectElement.getEnclosingElement().asType().toString();
-//                        if (tempHostName.equals(hostName)) {
-//
-//                            List<VariableElement> listInject = injectFieldMap.get(hostName);
-//                            if (listInject == null) {
-//                                listInject = new ArrayList<>();
-//                                injectFieldMap.put(hostName, listInject);
-//                            }
-//                            listInject.add(injectElement);
-//                        }
-//                    }
-//
-//                    //遍历在这个对象里面的注入变量，完成注入 instance.f = new modules().provider();
-//                    for (VariableElement injectE : injectFieldMap.get(hostName)) {
-//
-//                        fileBuilder.append("%s.%s = new %s().%s();\n",
-//                                param.getSimpleName(),injectE.getSimpleName(),
-//                                providerMap.get(returnTypeName).getEnclosingElement().asType().toString(),
-//                                providerMap.get(returnTypeName).getSimpleName()
-//                        );
-//
-//                    }
+                            }
+                            listInject.add(injectElement);
+                            injectFieldMap.put(hostName, listInject);
+                        }
+                    }
 
-                    fileBuilder.append("}\n");
+                    //遍历在这个对象里面的注入变量，完成注入 instance.f = new modules().provider();
+                    for (VariableElement injectE : injectFieldMap.get(hostName)) {
+                        if (injectE == null) {
+                            continue;
+                        }
+                        fileBuilder.append("\t\t%s.%s = new %s().%s();\n",
+                                param.getSimpleName(),
+                                injectE.getSimpleName(),
+                                providerMap.get(injectE.asType().toString()).getEnclosingElement().asType().toString(),
+                                providerMap.get(injectE.asType().toString()).getSimpleName()
+                        );
+
+                    }
+
+                    fileBuilder.append("\t\t}\n");
 
 
 

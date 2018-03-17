@@ -9,8 +9,9 @@ import com.example.suyxin.suyxprocessor.R;
 
 public class DiTestActivity extends AppCompatActivity {
 
+
     @Inject
-    ITestObject testObject;
+   public ITestObject testObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

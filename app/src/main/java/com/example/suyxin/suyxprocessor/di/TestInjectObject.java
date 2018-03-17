@@ -6,6 +6,7 @@ package com.example.suyxin.suyxprocessor.di;
 
 
 public class TestInjectObject implements ITestObject {
+
     @Override
     public String getText() {
         return "我是被注入的对象";
